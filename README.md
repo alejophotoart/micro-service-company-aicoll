@@ -53,6 +53,14 @@ php artisan app:logs-delete
 ``` 
 7. Adicional hay una documentacion en Swagger en la siguiente ruta **api/documentation#/**
 
+8. Aqui estan las configuraciones que se deben usar en el archivo **.env** para la base de datos
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=company_aicoll_dev
+DB_USERNAME=root
+DB_PASSWORD=
+
 Muchas gracias,
 Espero pueda volver a saber muy pronto de ustedes y gracias por tomarse el tiempo de llegar hasta aca
 
