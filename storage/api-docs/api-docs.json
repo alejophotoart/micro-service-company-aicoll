@@ -1,0 +1,442 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Microservice Empresas",
+        "description": "Documentacion del microservicio de empresas Aicoll",
+        "contact": {
+            "name": "Jose Alejandro Calderon",
+            "email": "alejandronba98@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.4.62",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/v1/companies": {
+            "get": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Mostrar el listado de empresas (Paginado)",
+                "operationId": "58f74ddf1cf22f795ab72e81e70b56ec",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Empresas traido exitosamente"
+                                                },
+                                                "providers": {
+                                                    "type": "string",
+                                                    "example": "[Listado de proveedores]"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Si algo en el servidor ocurre",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ha ocurrido un error inesperado... intentelo mas tarde"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Registrar empresa",
+                "operationId": "11f33dbac2d339f1e205b2c10554535f",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "nit": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "address": {
+                                                "type": "string"
+                                            },
+                                            "phone": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nit": "123234234-9",
+                                    "name": "Coordinadora",
+                                    "address": "Cra 22 #13n - 65 Transversal, Ciudad Pereira",
+                                    "phone": "+57 122545545"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Empresa creada exitosamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Si algo en el servidor ocurre",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ha ocurrido un error inesperado... intentelo mas tarde"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/companies/{nit}": {
+            "get": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Traer empresa por NIT",
+                "operationId": "b22134a668e47153808c964b308dded5",
+                "parameters": [
+                    {
+                        "name": "nit",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Empresa traido exitosamente"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Si el NIT no se encuentra",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "El recurso solicitado no fue encontrado."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Si algo en el servidor ocurre",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ha ocurrido un error inesperado... intentelo mas tarde"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/companies/{id}": {
+            "put": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Actualizar empresa",
+                "operationId": "1670648337ecf59b80e7574590c7a692",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 2
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "nit": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "address": {
+                                                "type": "string"
+                                            },
+                                            "phone": {
+                                                "type": "string"
+                                            },
+                                            "active": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nit": "123234234-9",
+                                    "name": "Coordinadora Envio Nacionales",
+                                    "address": "Cra 22 #13n - 65 Transversal, Ciudad Cali",
+                                    "phone": "+57 3154709447",
+                                    "active": false
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Empresa actualizada exitosamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Si el ID no se encuentra",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "El recurso solicitado no fue encontrado."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Si algo en el servidor ocurre",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ha ocurrido un error inesperado... intentelo mas tarde"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Empresas"
+                ],
+                "summary": "Traer empresa por NIT",
+                "operationId": "37f178e3f4237b09d85f0489f47bf34e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 3
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Empresa traido exitosamente"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Bad",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "No puede eliminar esta empresa ya que se encuentra activa"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Si el ID no se encuentra",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "El recurso solicitado no fue encontrado."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Si algo en el servidor ocurre",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ha ocurrido un error inesperado... intentelo mas tarde"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Empresas",
+            "description": "Empresas"
+        }
+    ]
+}
